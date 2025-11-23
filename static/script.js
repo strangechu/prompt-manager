@@ -128,6 +128,9 @@ function openModal(isEdit = false) {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 
+    // Always reset form to clear previous state (especially file inputs)
+    form.reset();
+
     // Reset image UI
     document.getElementById('currentImageContainer').classList.add('hidden');
     document.getElementById('currentImageContainer').classList.remove('flex');
@@ -135,7 +138,6 @@ function openModal(isEdit = false) {
 
     if (!isEdit) {
         title.innerText = 'Add Prompt';
-        form.reset();
         document.getElementById('promptId').value = '';
     }
 }
