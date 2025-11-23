@@ -24,7 +24,7 @@ function renderPrompts() {
         card.onclick = (e) => toggleSelection(prompt, e);
 
         const imageHtml = prompt.image_filename
-            ? `<img src="/uploads/${prompt.image_filename}" class="w-full h-32 object-cover rounded mb-3" alt="${prompt.name}">`
+            ? `<img src="/static/uploads/${prompt.image_filename}" class="w-full h-32 object-cover rounded mb-3" alt="${prompt.name}">`
             : `<div class="w-full h-32 bg-gray-700 rounded mb-3 flex items-center justify-center text-gray-500 text-xs">No Preview</div>`;
 
         card.innerHTML = `

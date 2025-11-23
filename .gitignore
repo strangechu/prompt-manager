@@ -1,1 +1,4 @@
 instance/prompts.db
+static/uploads/
+__pycache__/
+*.pyc
