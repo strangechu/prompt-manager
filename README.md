@@ -22,10 +22,13 @@ A simple and elegant tool to manage and assemble image generation prompts.
     pip install -r requirements.txt
     ```
 3.  **Run the Application**:
-    ```bash
-    python app.py
-    ```
-4.  **Access**: Open your browser and go to `http://127.0.0.1:5000`.
+    *   **Method 1 (Command Line)**:
+        ```bash
+        python app.py
+        ```
+    *   **Method 2 (Windows Shortcut)**:
+        Double-click `run.bat` to start the server and open the browser automatically.
+4.  **Access**: Open your browser and go to `http://127.0.0.1:5000` (if not opened automatically).
 
 ## Usage Guide
 
