@@ -109,6 +109,19 @@ function removeSelection(index) {
     updateAssembly();
 }
 
+function resetSelection() {
+    selectedPrompts.forEach(prompt => {
+        const card = document.getElementById(`card-${prompt.id}`);
+        if (card) {
+            card.classList.add('border-gray-700');
+            card.classList.remove('border-blue-500', 'ring-1', 'ring-blue-500');
+        }
+    });
+
+    selectedPrompts = [];
+    updateAssembly();
+}
+
 function copyToClipboard() {
     const text = document.getElementById('finalPrompt');
     text.select();
