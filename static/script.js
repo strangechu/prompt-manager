@@ -128,6 +128,11 @@ function openModal(isEdit = false) {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 
+    // Reset image UI
+    document.getElementById('currentImageContainer').classList.add('hidden');
+    document.getElementById('currentImageContainer').classList.remove('flex');
+    document.getElementById('deleteImage').value = 'false';
+
     if (!isEdit) {
         title.innerText = 'Add Prompt';
         form.reset();
@@ -178,6 +183,28 @@ async function editPrompt(id) {
     document.getElementById('name').value = prompt.name;
     document.getElementById('type').value = prompt.type;
     document.getElementById('content').value = prompt.content;
+
+    const imgContainer = document.getElementById('currentImageContainer');
+    const imgName = document.getElementById('currentImageName');
+    const delInput = document.getElementById('deleteImage');
+
+    if (prompt.image_filename) {
+        imgContainer.classList.remove('hidden');
+        imgContainer.classList.add('flex');
+        imgName.innerText = prompt.image_filename;
+        delInput.value = 'false';
+    } else {
+        imgContainer.classList.add('hidden');
+        imgContainer.classList.remove('flex');
+        delInput.value = 'false';
+    }
+}
+
+function markImageForDeletion() {
+    document.getElementById('currentImageContainer').classList.add('hidden');
+    document.getElementById('currentImageContainer').classList.remove('flex');
+    document.getElementById('deleteImage').value = 'true';
+    document.getElementById('image').value = ''; // Clear any new file selection
 }
 
 async function deletePrompt(id) {

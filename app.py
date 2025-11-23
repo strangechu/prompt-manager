@@ -56,13 +56,23 @@ def update_prompt(id):
     prompt = Prompt.query.get_or_404(id)
     data = request.form
     image = request.files.get('image')
+    delete_image = data.get('delete_image') == 'true'
 
     prompt.name = data.get('name', prompt.name)
     prompt.type = data.get('type', prompt.type)
     prompt.content = data.get('content', prompt.content)
 
+    if delete_image:
+        if prompt.image_filename:
+            # Try to delete the file from disk
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], prompt.image_filename))
+            except OSError:
+                pass # File might not exist or other error
+            prompt.image_filename = None
+
     if image:
-        # Delete old image if exists? Optional.
+        # If a new image is uploaded, it overrides the deletion (or replaces old one)
         filename = secure_filename(image.filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         prompt.image_filename = filename
