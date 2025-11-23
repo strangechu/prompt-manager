@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex flex-col md:flex-row gap-6 h-full">
+    <!-- Left Panel: Prompt List -->
+    <div class="flex-1">
+        <div class="mb-6">
+            <input type="text" id="searchInput" placeholder="Search prompts..."
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 shadow-sm"
+                oninput="fetchPrompts()">
+        </div>
+
+        <div id="promptsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Prompts will be injected here -->
+        </div>
+    </div>
+
+    <!-- Right Panel: Assembly (Sticky) -->
+    <div class="w-full md:w-1/3 lg:w-1/4">
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 sticky top-4 shadow-lg">
+            <h2 class="text-lg font-bold mb-4 text-blue-400">Prompt Assembly</h2>
+            <div id="selectedPrompts" class="space-y-2 mb-4 min-h-[100px] max-h-[300px] overflow-y-auto">
+                <p class="text-gray-500 text-sm italic" id="emptySelectionMsg">Select prompts to assemble...</p>
+                <!-- Selected items will appear here -->
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-400 text-xs font-bold mb-1">Final Prompt</label>
+                <textarea id="finalPrompt" readonly
+                    class="w-full bg-gray-900 border border-gray-600 rounded p-2 text-sm text-gray-300 h-24 focus:outline-none"></textarea>
+            </div>
+
+            <button onclick="copyToClipboard()"
+                class="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-lg transition font-semibold flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                    <path
+                        d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                </svg>
+                Copy to Clipboard
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
